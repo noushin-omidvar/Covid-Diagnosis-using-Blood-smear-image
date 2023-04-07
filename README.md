@@ -111,7 +111,7 @@ Figure 6 and 7 illustrate the layer-1 feature maps generated from DenseNet121 an
 
 
 ## 7 Usage
-The code in this repository is written in Python and uses PyTorch and other libraries. Please refer to the requirements.txt file for a complete list of required libraries. The code can be run using the command python main.py.
+The code in this repository is written in Python and uses PyTorch and other libraries. 
 
 ## 8 References
-Please refer to the paper for
+Please refer to the paper folder for more details. 
