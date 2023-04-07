@@ -1,14 +1,10 @@
 # Automated Blood Cell count from Blood Smear Images for COVID-19 Diagnosis
+This repository contains the code and data for the paper "Automated Blood Cell count from Blood Smear Images for COVID-19 Diagnosis". The goal of this project is to provide a technique that can improve rapid and accurate decisions on COVID-19 diagnosis, treatment, and isolation needs.
+
 
 ## 1 Problem Statement & Aims
 
-The COVID-19 pandemia has to date reached more than 156 million confirmed cases (probably a much higher number of infected), and almost 3.27 million deaths. We all know that the recent outbreak of the COVID-19 is an urgent global concern. To deal with it, healthcare professionals need to make rapid and accurate decisions on the COVID-19 diagnosis, treatment, and isolation needs. Therefore, many researchers
-have been recently attracted to provide techniques that can improve the mentioned decisions.The current gold standard test for COVID-19 diagnosis is amplification of viral RNA by (real time) reverse transcription polymerase chain reaction
-(rRT-PCR). However, it presents known shortcomings such as long turnaround times (3-4 hours to generate results), potential shortage of reagents, false-negative rates as large as % 15-20 , the need for certified laboratories, expensive equipment and trained personnel. Thus there is a need for alternative, faster, less expensive and more accessible tests. A recent work has shown that a simple blood test might help to reduce the false-negative rRT-PCR tests [1]. Blood tests also can be used in developing countries and in those countries suffering from a shortage of rRT-PCR reagents and/or specialized laboratories as an inexpensive and available alternative to identify potential COVID-19 patients. However, performing regular blood tests also requires medical experts. To leverage the advantage of blood analysis and reduce the cost of performing blood tests, researchers are recently working on the automated blood-based COVID-19 diagnosis tests.
-In this study, the blood sample image of each patient will be considered as a new testing sample, and the probability of being diagnosed with positive COVID-19 ( diagnosis label ) will be the class predicted for that test sample. Figure 1 shows a graphical representation of the pipeline of this project. Based on this figure, it can be observed that we will utilize two data sets (𝑖) data set of blood cell smear images with annotations (rectangular box and labels) for blood cells (WBC, RBC, and Platelets) and labels for the WBC subtypes (Neutrophil, Monocyte, Lymphocyte, Eosinophil); and (𝑖𝑖) data set of COVID binary classification having features of blood cell and sub-types count. In this project, we have three main tasks as follows:
-(1) Detection of blood cell objects (WBC, RBC, Platelets) in the collected smear image;
-(2) Classification of WBC sub-types based on the cropped subimages from detected box for each WBC; and
-(3) COVID-19 Diagnosis based on the features collected from task (1) and task (2).
+The current gold standard test for COVID-19 diagnosis is amplification of viral RNA by (real-time) reverse transcription polymerase chain reaction (rRT-PCR). However, it presents known shortcomings such as long turnaround times, potential shortage of reagents, false-negative rates, the need for certified laboratories, expensive equipment and trained personnel. Thus there is a need for alternative, faster, less expensive and more accessible tests. A recent work has shown that a simple blood test might help to reduce the false-negative rRT-PCR tests. Blood tests can be used in developing countries and in those countries suffering from a shortage of rRT-PCR reagents and/or specialized laboratories as an inexpensive and available alternative to identify potential COVID-19 patients. However, performing regular blood tests also requires medical experts. To leverage the advantage of blood analysis and reduce the cost of performing blood tests, researchers are recently working on automated blood-based COVID-19 diagnosis tests.
 
 <figure>
 <img src="images/pipeline.jpg" alt="Trulli" style="width:100%">
@@ -17,8 +13,9 @@ In this study, the blood sample image of each patient will be considered as a ne
 
 ## 2 DATASET
 
-In this project, we have exploited two data sets. The data set is the combined version of two data sets: https://github.com/Shenggan/BCCD_Dataset and https://www.kaggle.com/paultimothymooney/blood-cells that contain a total of 17,092 annotated and labeled images of blood cells. In this data set, each blood cell object (WBC, RBC, and Platelets) are annotated with a rectangular ground truth box and corresponding labels. Moreover, in this data set, the cropped pictures of each WBC object is also labeled as following four groups: Neutrophil, Monocyte, Lymphocyte,
-Eosinophil. The size of the images is 540×960 pixels, in format of jpg. The second dataset http://zenodo.org/record/3886927#.YFqiLkhKjVp is consisted of routine blood-test results performed on 1,925 patients on admission to the ED at the San Raffaele Hospital (OSR) from February 19, 2020, to May 31, 2020. For each sample, COVID-19 diagnosis was determined based on the result of the molecular test for SARS-CoV-2 performed by RT-PCR on nasopharyngeal swabs. The response of each COVID-19 test data sample takes a binary value {0, 1} in case the COVID-19 test result is {𝑛𝑒𝑔𝑎𝑡𝑖𝑣𝑒, 𝑝𝑜𝑠𝑖𝑡𝑖𝑣𝑒}, respectively. Table 1 represents the available features in this data set.
+In this project, two datasets have been exploited. The first dataset is the combined version of two datasets: https://github.com/Shenggan/BCCD_Dataset and https://www.kaggle.com/paultimothymooney/blood-cells, which contain a total of 17,092 annotated and labeled images of blood cells. In this dataset, each blood cell object (WBC, RBC, and Platelets) are annotated with a rectangular ground truth box and corresponding labels. Moreover, in this dataset, the cropped pictures of each WBC object are also labeled as following four groups: Neutrophil, Monocyte, Lymphocyte, Eosinophil. The size of the images is 540×960 pixels, in the format of jpg.
+
+The second dataset, http://zenodo.org/record/3886927#.YFqiLkhKjVp, is consisted of routine blood-test results performed on 1,925 patients on admission to the ED at the San Raffaele Hospital (OSR) from February 19, 2020, to May 31, 2020. For each sample, COVID-19 diagnosis was determined based on the result of the molecular test for SARS-CoV-2 performed by RT-PCR on nasopharyngeal swabs. The response of each COVID-19 test data sample takes a binary value {0, 1} in case the COVID-19 test result is {negative, positive}, respectively. Table 1 in the paper represents the available features in this dataset.
 
 | Table 1. Feature Descriptions |
 | ----------------------------- | --------------------- |
@@ -37,20 +34,24 @@ Eosinophil. The size of the images is 540×960 pixels, in format of jpg. The sec
 
 ## 3 DATA PRE-PROCESSING
 
-• Since we are using a 300 variant of single shot multibox detection for blood dection (SSD300) model for cell detection in images of task 1, input images to the model have to be (1) transformed into float tensors with size 3𝑥300𝑥300; and (2) normalized to ImageNet images’ RGB channels.
-• For task 2 (classification of WBC sub-types), the data was highly imbalanced, i.e., some sub-types have large number of samples while others don’t. Therefore, to make the data set balanced, we needed to augment it by adding rotation, mirroring, random cropping, and shearing so that all the WBC sub-types will have the same number of image samples. The data augmentation will increase the number of all data samples being imported to the CNN model, and make the train and validation data more balanced.
-• In task 2, before importing images to the deep neural networks (DNNs), we also need to normalize the blood cell images by scale of 255.
+The input images for the cell detection model (SSD300) have to be transformed into float tensors with size 3x300x300 and normalized to ImageNet images.
 
-## Task 1: Detection of blood cell objects
+## Tasks
+This project has three main tasks:
 
-The objective of task 1 is to detect the blood cell objects (WBC, RBC, and Platelets) in the blood smear images. Among all objects, the detection of WBC is more important since it will then be imported into task 2. We performed one unsupervised and two supervised object detection techniques. Figure 2 will represent all the steps that we performed in this task.
+
+
+COVID-19 Diagnosis based on the features collected from task 1 and task 2.
+
+### Task 1: Detection of blood cell objects (WBC, RBC, Platelets) in the collected smear image.
 
 <figure>
 <img src="images/Task1.jpg" alt="Trulli" style="width:100%">
 <figcaption align = "center"><b>Fig.2 - Graphical Representation of models utilized in Task 1</b></figcaption>
 </figure>
 
-## Task 2: Classification of WBCs
+
+### Task 2: Classification of WBC sub-types based on the cropped subimages from the detected box for each WBC.
 
 The main objective of this task is to classify the cropped smear images of detected WBC into four sub-types (Neutrophil, Monocyte, Lymphocyte, Eosinophil). To do so, we utilize eight CNN models:
 
@@ -107,3 +108,10 @@ Figure 6 and 7 illustrate the layer-1 feature maps generated from DenseNet121 an
 <img src="images/Detection_Examples.jpg" alt="Trulli" style="width:100%">
 <figcaption align = "center"><b>Fig.7 - Layer-1 feature maps generated by customized architecture 2.</b></figcaption>
 </figure>
+
+
+## Usage
+The code in this repository is written in Python and uses PyTorch and other libraries. Please refer to the requirements.txt file for a complete list of required libraries. The code can be run using the command python main.py.
+
+## References
+Please refer to the paper for
