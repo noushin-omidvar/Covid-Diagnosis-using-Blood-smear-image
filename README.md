@@ -36,14 +36,14 @@ The second dataset, http://zenodo.org/record/3886927#.YFqiLkhKjVp, is consisted 
 
 The input images for the cell detection model (SSD300) have to be transformed into float tensors with size 3x300x300 and normalized to ImageNet images.
 
-## Tasks
+## 4 Tasks
 This project has three main tasks:
 
 
 
 COVID-19 Diagnosis based on the features collected from task 1 and task 2.
 
-### Task 1: Detection of blood cell objects (WBC, RBC, Platelets) in the collected smear image.
+### 4.1 Task 1: Detection of blood cell objects (WBC, RBC, Platelets) in the collected smear image.
 
 <figure>
 <img src="images/Task1.jpg" alt="Trulli" style="width:100%">
@@ -51,7 +51,7 @@ COVID-19 Diagnosis based on the features collected from task 1 and task 2.
 </figure>
 
 
-### Task 2: Classification of WBC sub-types based on the cropped subimages from the detected box for each WBC.
+### 4.2 Task 2: Classification of WBC sub-types based on the cropped subimages from the detected box for each WBC.
 
 The main objective of this task is to classify the cropped smear images of detected WBC into four sub-types (Neutrophil, Monocyte, Lymphocyte, Eosinophil). To do so, we utilize eight CNN models:
 
@@ -74,7 +74,7 @@ The main objective of this task is to classify the cropped smear images of detec
 <figcaption align = "center"><b>Fig.4 - Graphical Representation of customized architecture 2</b></figcaption>
 </figure>
 
-Task 3: The main objective of this task is to classify COVID-19 diagnosis based on the collected
+### 4.3 Task 3: The main objective of this task is to classify COVID-19 diagnosis based on the collected
 features collected from task 1 and task 2. The training of this task is based on the second data set in which the sample size is too small (201 samples). Therefore, we decided to perform this classification task by the classical machine learning classification models instead of deep learning models. To do so, we are using nine classifiers as follows:
 
 (1) Logistic Regression [12];
@@ -88,14 +88,14 @@ features collected from task 1 and task 2. The training of this task is based on
 neurons, respectively;
 (9) AdaBoost [18].
 
-## Blood Cell Detection Output
+## 5 Blood Cell Detection Output
 
 <figure>
 <img src="images/Detection_Examples.jpg" alt="Trulli" style="width:100%">
 <figcaption align = "center"><b>Fig.5 - Detection examples on BCCD test dataset with VGG16(top) and Alexnet(bottom) based SSD models.</b></figcaption>
 </figure>
 
-## White Blood Cell identification
+## 6 White Blood Cell identification
 
 Figure 6 and 7 illustrate the layer-1 feature maps generated from DenseNet121 and architecture 2,respectively, for three randomly selected samples.
 
@@ -110,8 +110,8 @@ Figure 6 and 7 illustrate the layer-1 feature maps generated from DenseNet121 an
 </figure>
 
 
-## Usage
+## 7 Usage
 The code in this repository is written in Python and uses PyTorch and other libraries. Please refer to the requirements.txt file for a complete list of required libraries. The code can be run using the command python main.py.
 
-## References
+## 8 References
 Please refer to the paper for
