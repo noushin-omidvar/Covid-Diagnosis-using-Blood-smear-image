@@ -17,7 +17,7 @@ In this project, two datasets have been exploited. The first dataset is the comb
 
 The second dataset, http://zenodo.org/record/3886927#.YFqiLkhKjVp, is consisted of routine blood-test results performed on 1,925 patients on admission to the ED at the San Raffaele Hospital (OSR) from February 19, 2020, to May 31, 2020. For each sample, COVID-19 diagnosis was determined based on the result of the molecular test for SARS-CoV-2 performed by RT-PCR on nasopharyngeal swabs. The response of each COVID-19 test data sample takes a binary value {0, 1} in case the COVID-19 test result is {negative, positive}, respectively. Table 1 in the paper represents the available features in this dataset.
 
-| Table 1. Feature Descriptions |
+| Table 1. Feature Descriptions | |
 | ----------------------------- | --------------------- |
 | Feature                       | Type                  |
 | -------                       | -----                 |
