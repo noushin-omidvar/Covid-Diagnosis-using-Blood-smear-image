@@ -74,8 +74,8 @@ The main objective of this task is to classify the cropped smear images of detec
 <figcaption align = "center"><b>Fig.4 - Graphical Representation of customized architecture 2</b></figcaption>
 </figure>
 
-### 4.3 Task 3: The main objective of this task is to classify COVID-19 diagnosis based on the collected
-features collected from task 1 and task 2. The training of this task is based on the second data set in which the sample size is too small (201 samples). Therefore, we decided to perform this classification task by the classical machine learning classification models instead of deep learning models. To do so, we are using nine classifiers as follows:
+### 4.3 Task 3: The main objective of this task is to classify COVID-19 diagnosis based on the collected features from task 1 and task 2. 
+The training of this task is based on the second data set in which the sample size is too small (201 samples). Therefore, we decided to perform this classification task by the classical machine learning classification models instead of deep learning models. To do so, we are using nine classifiers as follows:
 
 (1) Logistic Regression [12];
 (2) K-Nearest Neighbor [9];
