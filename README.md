@@ -36,33 +36,30 @@ The second dataset, http://zenodo.org/record/3886927#.YFqiLkhKjVp, is consisted 
 
 The input images for the cell detection model (SSD300) have to be transformed into float tensors with size 3x300x300 and normalized to ImageNet images.
 
-## 4 Tasks
-This project has three main tasks:
+## 4 Modules
+This project has three main modules:
 
 
-
-COVID-19 Diagnosis based on the features collected from task 1 and task 2.
-
-### 4.1 Task 1: Detection of blood cell objects (WBC, RBC, Platelets) in the collected smear image.
+### 4.1 Module 1: Detection of blood cell objects (WBC, RBC, Platelets) in the collected smear image.
 
 <figure>
 <img src="images/Task1.jpg" alt="Trulli" style="width:100%">
-<figcaption align = "center"><b>Fig.2 - Graphical Representation of models utilized in Task 1</b></figcaption>
+<figcaption align = "center"><b>Fig.2 - Graphical Representation of models utilized in module 1</b></figcaption>
 </figure>
 
 
-### 4.2 Task 2: Classification of WBC sub-types based on the cropped subimages from the detected box for each WBC.
+### 4.2 Module 2: Classification of WBC sub-types based on the cropped subimages from the detected box for each WBC.
 
-The main objective of this task is to classify the cropped smear images of detected WBC into four sub-types (Neutrophil, Monocyte, Lymphocyte, Eosinophil). To do so, we utilize eight CNN models:
+The main objective of this module is to classify the cropped smear images of detected WBC into four sub-types (Neutrophil, Monocyte, Lymphocyte, Eosinophil). To do so, we utilize eight CNN models:
 
 (1) customized architecture 1 (Figure 3);
 (2) customized architecture 2 (Figure 4);
-(3) pre-trained ResNet50 [5];
-(4) pre-trained DenseNet121 [6];
-(5) pre-trained VGG16 [15];
-(6) pretrained MobileNet-v2 [13];
-(7) pre-trained Xception [3]; and
-(8) pre-trained Inception [16].
+(3) pre-trained ResNet50;
+(4) pre-trained DenseNet121;
+(5) pre-trained VGG16;
+(6) pretrained MobileNet-v2;
+(7) pre-trained Xception; and
+(8) pre-trained Inception.
 
 <figure>
 <img src="images/architecture1.jpg" alt="Trulli" style="width:100%">
@@ -74,8 +71,8 @@ The main objective of this task is to classify the cropped smear images of detec
 <figcaption align = "center"><b>Fig.4 - Graphical Representation of customized architecture 2</b></figcaption>
 </figure>
 
-### 4.3 Task 3: The main objective of this task is to classify COVID-19 diagnosis based on the collected features from task 1 and task 2. 
-The training of this task is based on the second data set in which the sample size is too small (201 samples). Therefore, we decided to perform this classification task by the classical machine learning classification models instead of deep learning models. To do so, we are using nine classifiers as follows:
+### 4.3 Module 3: COVID-19 Diagnosis based on the features collected from task 1 and task 2.
+The main objective of this module is to classify COVID-19 diagnosis based on the collected features from module 1 and module 2. The model training of this module is based on the second data set in which the sample size is too small (201 samples). Therefore, we decided to perform this classification task by the classical machine learning classification models instead of deep learning models. To do so, we are using nine classifiers as follows:
 
 (1) Logistic Regression;
 (2) K-Nearest Neighbor;
