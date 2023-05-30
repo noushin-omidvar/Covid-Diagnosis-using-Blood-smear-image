@@ -77,16 +77,16 @@ The main objective of this task is to classify the cropped smear images of detec
 ### 4.3 Task 3: The main objective of this task is to classify COVID-19 diagnosis based on the collected features from task 1 and task 2. 
 The training of this task is based on the second data set in which the sample size is too small (201 samples). Therefore, we decided to perform this classification task by the classical machine learning classification models instead of deep learning models. To do so, we are using nine classifiers as follows:
 
-(1) Logistic Regression [12];
-(2) K-Nearest Neighbor [9];
-(3) Linear SVM [4];
-(4) Non-Linear SVM [4];
-(5) Gaussian Process [11];
-(6) Decision Tree[8];
-(7) Random Forest [2];
-(8) Multi-Layer Perceptron (MLP) [10] with three layers containing (20,40,20)
+(1) Logistic Regression;
+(2) K-Nearest Neighbor;
+(3) Linear SVM;
+(4) Non-Linear SVM;
+(5) Gaussian Process;
+(6) Decision Tree;
+(7) Random Forest;
+(8) Multi-Layer Perceptron (MLP) with three layers containing (20,40,20)
 neurons, respectively;
-(9) AdaBoost [18].
+(9) AdaBoost.
 
 ## 5 Blood Cell Detection Output
 
