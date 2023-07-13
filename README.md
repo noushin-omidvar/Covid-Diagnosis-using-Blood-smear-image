@@ -17,7 +17,7 @@ In this project, two datasets have been exploited. The first dataset is the comb
 
 The second dataset, http://zenodo.org/record/3886927#.YFqiLkhKjVp, is consisted of routine blood-test results performed on 1,925 patients on admission to the ED at the San Raffaele Hospital (OSR) from February 19, 2020, to May 31, 2020. For each sample, COVID-19 diagnosis was determined based on the result of the molecular test for SARS-CoV-2 performed by RT-PCR on nasopharyngeal swabs. The response of each COVID-19 test data sample takes a binary value {0, 1} in case the COVID-19 test result is {negative, positive}, respectively. Table 1 in the paper represents the available features in this dataset.
 
-| Table 1. Feature Descriptions |
+| Table 1. Feature Descriptions | |
 | ----------------------------- | --------------------- |
 | Feature                       | Type                  |
 | -------                       | -----                 |
@@ -36,33 +36,30 @@ The second dataset, http://zenodo.org/record/3886927#.YFqiLkhKjVp, is consisted 
 
 The input images for the cell detection model (SSD300) have to be transformed into float tensors with size 3x300x300 and normalized to ImageNet images.
 
-## 4 Tasks
-This project has three main tasks:
+## 4 Modules
+This project has three main modules:
 
 
-
-COVID-19 Diagnosis based on the features collected from task 1 and task 2.
-
-### 4.1 Task 1: Detection of blood cell objects (WBC, RBC, Platelets) in the collected smear image.
+### 4.1 Module 1: Detection of blood cell objects (WBC, RBC, Platelets) in the collected smear image.
 
 <figure>
 <img src="images/Task1.jpg" alt="Trulli" style="width:100%">
-<figcaption align = "center"><b>Fig.2 - Graphical Representation of models utilized in Task 1</b></figcaption>
+<figcaption align = "center"><b>Fig.2 - Graphical Representation of models utilized in module 1</b></figcaption>
 </figure>
 
 
-### 4.2 Task 2: Classification of WBC sub-types based on the cropped subimages from the detected box for each WBC.
+### 4.2 Module 2: Classification of WBC sub-types based on the cropped subimages from the detected box for each WBC.
 
-The main objective of this task is to classify the cropped smear images of detected WBC into four sub-types (Neutrophil, Monocyte, Lymphocyte, Eosinophil). To do so, we utilize eight CNN models:
+The main objective of this module is to classify the cropped smear images of detected WBC into four sub-types (Neutrophil, Monocyte, Lymphocyte, Eosinophil). To do so, we utilize eight CNN models:
 
 (1) customized architecture 1 (Figure 3);
 (2) customized architecture 2 (Figure 4);
-(3) pre-trained ResNet50 [5];
-(4) pre-trained DenseNet121 [6];
-(5) pre-trained VGG16 [15];
-(6) pretrained MobileNet-v2 [13];
-(7) pre-trained Xception [3]; and
-(8) pre-trained Inception [16].
+(3) pre-trained ResNet50;
+(4) pre-trained DenseNet121;
+(5) pre-trained VGG16;
+(6) pretrained MobileNet-v2;
+(7) pre-trained Xception; and
+(8) pre-trained Inception.
 
 <figure>
 <img src="images/architecture1.jpg" alt="Trulli" style="width:100%">
@@ -74,19 +71,19 @@ The main objective of this task is to classify the cropped smear images of detec
 <figcaption align = "center"><b>Fig.4 - Graphical Representation of customized architecture 2</b></figcaption>
 </figure>
 
-### 4.3 Task 3: The main objective of this task is to classify COVID-19 diagnosis based on the collected
-features collected from task 1 and task 2. The training of this task is based on the second data set in which the sample size is too small (201 samples). Therefore, we decided to perform this classification task by the classical machine learning classification models instead of deep learning models. To do so, we are using nine classifiers as follows:
+### 4.3 Module 3: COVID-19 Diagnosis based on the features collected from task 1 and task 2.
+The main objective of this module is to classify COVID-19 diagnosis based on the collected features from module 1 and module 2. The model training of this module is based on the second data set in which the sample size is too small (201 samples). Therefore, we decided to perform this classification task by the classical machine learning classification models instead of deep learning models. To do so, we are using nine classifiers as follows:
 
-(1) Logistic Regression [12];
-(2) K-Nearest Neighbor [9];
-(3) Linear SVM [4];
-(4) Non-Linear SVM [4];
-(5) Gaussian Process [11];
-(6) Decision Tree[8];
-(7) Random Forest [2];
-(8) Multi-Layer Perceptron (MLP) [10] with three layers containing (20,40,20)
+(1) Logistic Regression;
+(2) K-Nearest Neighbor;
+(3) Linear SVM;
+(4) Non-Linear SVM;
+(5) Gaussian Process;
+(6) Decision Tree;
+(7) Random Forest;
+(8) Multi-Layer Perceptron (MLP) with three layers containing (20,40,20)
 neurons, respectively;
-(9) AdaBoost [18].
+(9) AdaBoost.
 
 ## 5 Blood Cell Detection Output
 
@@ -111,7 +108,7 @@ Figure 6 and 7 illustrate the layer-1 feature maps generated from DenseNet121 an
 
 
 ## 7 Usage
-The code in this repository is written in Python and uses PyTorch and other libraries. Please refer to the requirements.txt file for a complete list of required libraries. The code can be run using the command python main.py.
+The code in this repository is written in Python and uses PyTorch and other libraries. 
 
 ## 8 References
-Please refer to the paper for
+Please refer to the paper folder for more details. 
