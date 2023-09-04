@@ -32,15 +32,11 @@ The second dataset, http://zenodo.org/record/3886927#.YFqiLkhKjVp, is consisted 
 | Eosinophils                   | Numerical(continuous) |
 | Basophils                     | Numerical(continuous) |
 
-## 3 DATA PRE-PROCESSING
-
-The input images for the cell detection model (SSD300) have to be transformed into float tensors with size 3x300x300 and normalized to ImageNet images.
-
-## 4 Modules
+## 3 Modules
 This project has three main modules:
 
 
-### 4.1 Module 1: Detection of blood cell objects (WBC, RBC, Platelets) in the collected smear image.
+### 3.1 Module 1: Detection of blood cell objects (WBC, RBC, Platelets) in the collected smear image.
 
 <figure>
 <img src="results/figures/Task1.jpg" alt="Trulli" style="width:100%">
@@ -48,7 +44,7 @@ This project has three main modules:
 </figure>
 
 
-### 4.2 Module 2: Classification of WBC sub-types based on the cropped subimages from the detected box for each WBC.
+### 3.2 Module 2: Classification of WBC sub-types based on the cropped subimages from the detected box for each WBC.
 
 The main objective of this module is to classify the cropped smear images of detected WBC into four sub-types (Neutrophil, Monocyte, Lymphocyte, Eosinophil). To do so, we utilize eight CNN models:
 
